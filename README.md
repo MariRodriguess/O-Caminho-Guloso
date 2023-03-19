@@ -22,7 +22,7 @@ Programa feito na linguagem C++.<br>
 - <b>input.data:</b> Arquivo contendo o tamanho das matrizes (na primeira linha) e as próprias matrizes nas linhas seguintes. É importante salientar que a matriz é composta apenas por números inteiros positivos e o seu tamanho é quadrado, ou seja, tem o mesmo número de linhas e colunas. Abaixo um modelo de um arquivo com 4 matrizes 4x4:
 
 <p align="center">
-<img src="https://github.com/MariRodriguess/Caminho-Guloso/blob/d4e0815ef2d8c5c84e263843cf959491d6ab05ae/imgs/arquivo_ex.png">
+<img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/arquivo_ex.png">
 </p>
 
 - <b>Terminal de comando:</b> Onde é pedido ao usuário para digitar a posição (linha e coluna) pela qual ele quer começar a caminhar na matriz. E onde também é impresso as matrizes em seu formato original, em seu formato com ‘-1’ nas posições onde foi percorrida, e também as somas individuais e total dos valores percorridos.
@@ -32,33 +32,33 @@ Programa feito na linguagem C++.<br>
 <br>Para o caminhamento, será utilizado essa matriz para mostrar as decisões tomadas:
 
 <p align="center">
-<img src="https://github.com/MariRodriguess/Caminho-Guloso/blob/main/imgs/matriz_ex.PNG">
+<img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/matriz_ex.PNG">
 </p>
 
 <b>Será utilizado duas cores:</b> <br>
 <i>Azul claro:</i> todas as posições da matriz que entrariam na condição apresentada.<br>
-<i>Azul escuro:</i> posição selecionada aleatoriamente para exemplificação de possíveis caminhos, utilizando as setas.<br><br>
+<i>Azul escuro:</i> posição selecionada aleatoriamente, dentro das que cumprem a condição, para exemplificação de possíveis caminhos, utilizando as setas.<br><br>
 
 Foi criado um IF e três ELSE IF’s (condições):<br>
 
 <b>1º-</b> Irá verificar se a posição atual da matriz é a última linha e não é a última coluna, se sim, apenas será possível caminhar para a direita:
 <p align="center">
-<img src="https://github.com/MariRodriguess/Caminho-Guloso/blob/main/imgs/matriz_ex1.png">
+<img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/matriz_ex1.png">
 </p>
 
 <br> <b>2º-</b> Irá verificar se está na primeira coluna e não está na última linha, pois nesse caso, será possível andar apenas para direita, diagonal direita e baixo:
 <p align="center">
-<img src="https://github.com/MariRodriguess/Caminho-Guloso/blob/main/imgs/matriz_ex2.png">
+<img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/matriz_ex2.png">
 </p>
 
 <br> <b>3º-</b> Irá verificar se está na última coluna e não está na última linha, pois nesse caso, será possível andar apenas para esquerda, diagonal esquerda e baixo:
 <p align="center">
-<img src="https://github.com/MariRodriguess/Caminho-Guloso/blob/main/imgs/matriz_ex3.png">
+<img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/matriz_ex3.png">
 </p>
 
 <br> <b>4º-</b> Irá verificar se não está na primeira ou última coluna, ou na última linha da matriz, pois nesse caso será possível caminhar para todos os lados, se algum deles já não tiver sido descoberto:
 <p align="center">
-<img src="https://github.com/MariRodriguess/Caminho-Guloso/blob/main/imgs/matriz_ex4.png">
+<img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/matriz_ex4.png">
 </p>
 
 Cada um dos If / Else if irá chamar uma função que verifique qual o maior valor dentro dos caminhos possíveis, e se ele já não foi processado, quando o encontrar, a matriz será direcionada para esse caminho e continuará assim até chegar no fim.<br>
@@ -68,7 +68,7 @@ Para cada direção (direita, esquerda, abaixo, diagonal direita, diagonal esque
 Em casos de valores iguais, foi adotado uma forma para que a matriz sempre seja direcionada para os lugares mais distantes do final. A prioridade ficou nessa ordem: esquerda, direita, diagonal esquerda, abaixo, diagonal direita. <br>
 O exemplo abaixo, com o número ‘58’, mostra esse método na prática. Com a localização atual no [2,3] a opção de caminhar poderia ser para direita [2,4] ou para baixo [3,3], pois é onde tem o maior valor dentre todas as opções possíveis. Seguindo a prioridade, ele foi primeiro para direita, analisou todas as posições novamente, e o ‘58’ era de novo o maior dos valores, então se moveu para baixo. Dessa forma, foi possível pegar os dois ‘58’ e acrescentá-lo à soma, caso contrário, se fosse para baixo primeiro, teria deixado de pegar o valor da direita, e afetado a soma total, cujo objetivo é ser o maior valor possível:<br>
 <p align="center">
-<img src="https://github.com/MariRodriguess/Caminho-Guloso/blob/main/imgs/repeticao_ex.png">
+<img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/repeticao_ex.png">
 </p>
 
 Quando chegar ao fim de uma matriz, o arquivo irá fazer a leitura da próxima e chamar todas as mesmas funções.
@@ -76,10 +76,10 @@ Assim sendo, o programa irá fazer a leitura de cada uma das matrizes contidas n
 
 ## Exemplo de execução:
 <p align="center">
-<img src="https://github.com/MariRodriguess/Caminho-Guloso/blob/421a2efec588e25337deb7a385bcfac155296c9c/imgs/terminal_ex1.png">
+<img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/terminal_ex1.png">
 </p>
 <p align="center">
-<img src="https://github.com/MariRodriguess/Caminho-Guloso/blob/394f8960fdd3e7423fcfebb64c05733b6af2c866/imgs/terminal_ex2.png">
+<img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/terminal_ex2.png">
 </p>
 
 
