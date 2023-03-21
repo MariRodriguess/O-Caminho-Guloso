@@ -8,7 +8,7 @@ int tamanho_matriz(){
     int tamanho=0;
     short int linha_arq=0;
 
-    arquivoE.open("input.data");
+    arquivoE.open("dataset/input.data", ios::in);
 
     if (arquivoE.is_open()){
         while(getline(arquivoE, linha)){
@@ -42,7 +42,7 @@ int quantidade(int** matriz, int tamanho){
     ifstream arquivoE;
     string linha;
     int quantidade=0, linha_arq=0;
-    arquivoE.open("input.data");
+    arquivoE.open("dataset/input.data", ios::in);
 
     if (arquivoE.is_open()){
         while(getline(arquivoE, linha)){
@@ -72,7 +72,7 @@ void ler_andar_matriz(int** matriz, int tamanho){
     int quant = quantidade(matriz, tamanho);
     
     ifstream arquivoE;
-    arquivoE.open("input.data");
+    arquivoE.open("dataset/input.data", ios::in);
     
     if (arquivoE.is_open()){
         cout << "\nExistem " << quant << " matrizes de tamanho " << tamanho << "x" << tamanho << " no arquivo.";
@@ -153,20 +153,20 @@ int verificar_matriz(int** matriz, int tamanho, int linha, int coluna, int quant
 
     for (int i=linha; i<tamanho; i++){
         for (int j=coluna; j<tamanho; j++){
-            
-            if ((j!=tamanho-1) && (i==tamanho-1)){
-                andei=1;
-            }
-            else if ((j==0) && (i!=tamanho-1)){
-                andei = valor_maior_canto_1(matriz, soma, i, j, tamanho);
-            }
-            else if ((j==tamanho-1) && (i!=tamanho-1)){
-                andei = valor_maior_canto_2(matriz, soma, i, j, tamanho);
-            }
-            else if ((j!=0) && (i!=tamanho-1) && (j!=tamanho-1)){
+
+            if ((j!=0) && (i!=tamanho-1) && (j!=tamanho-1)){
                 andei = valor_maior_geral(matriz, soma, i, j, tamanho);
             }
-            
+            else if ((j==0) && (i!=tamanho-1)){
+                andei = valor_maior_cantos(matriz, soma, i, j, tamanho, 10);
+            }
+            else if ((j==tamanho-1) && (i!=tamanho-1)){
+                andei = valor_maior_cantos(matriz, soma, i, j, tamanho, 01);
+            }
+            else if ((j!=tamanho-1) && (i==tamanho-1)){
+                andei = 1;
+            }
+ 
             if(andei==1){
                 aux_soma = direita(matriz, i, j, tamanho);
                 soma+=aux_soma;
@@ -232,43 +232,38 @@ short int valor_maior_geral(int** matriz, int soma, int i, int j, int tamanho){
     return andei;   
 }
 
-short int valor_maior_canto_1(int** matriz, int soma, int i, int j, int tamanho){
-    int andei=0;
+short int valor_maior_cantos(int** matriz, int soma, int i, int j, int tamanho, int aux){
+    short int andei=0;
     int di = matriz[i][j+1];
-    int d_d = matriz[i+1][j+1];
-    int b = matriz[i+1][j];
-
-
-    if ((di!=-1) && (di>=d_d) && (di>=b)){
-        andei=1;
-    }
-    else if ((b!=-1) && (b>di) && (b>=d_d)){
-        andei=3;
-    }
-    else if ((d_d!=-1) && (d_d>di) && (d_d>b)){
-        andei=2;
-    } 
-    
-    return andei;
-}
-
-short int valor_maior_canto_2(int** matriz, int soma, int i, int j, int tamanho){
-    int andei=0;
     int es = matriz[i][j-1];
+    int d_d = matriz[i+1][j+1];
     int d_e = matriz[i+1][j-1];
     int b = matriz[i+1][j];
 
-    if ((es!=-1) && (es>=d_e) && (es>=b)){
-        andei=5;
+    if (aux == 10){
+        if ((di!=-1) && (di>=d_d) && (di>=b)){
+            andei=1;
+        }
+        else if ((b!=-1) && (b>di) && (b>=d_d)){
+            andei=3;
+        }
+        else if ((d_d!=-1) && (d_d>di) && (d_d>b)){
+            andei=2;
+        }    
     }
-    else if ((d_e!=-1) && (d_e>es) && (d_e>=b)){
-        andei=4;
+
+    if (aux == 01){
+        if ((es!=-1) && (es>=d_e) && (es>=b)){
+            andei=5;
+        }
+        else if ((d_e!=-1) && (d_e>es) && (d_e>=b)){
+            andei=4;
+        }
+        else if ((b!=-1) && (b>es) && (b>d_e)){
+            andei=3;
+        }
     }
-    else if ((b!=-1) && (b>es) && (b>d_e)){
-        andei=3;
-    }
-    
-    return andei;
+    return andei; 
 }
 
 int direita(int** matriz, int i, int j, int tamanho){
