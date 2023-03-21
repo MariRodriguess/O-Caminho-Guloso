@@ -14,7 +14,7 @@ int tamanho_matriz(){
         while(getline(arquivoE, linha)){
             if (linha_arq==0){
                 linha_arq=1;
-                for (int i=0; i<=linha.size(); i++){
+                for (int i=0; i<=(int)linha.size(); i++){
                     if ((linha[i] != '\0')){
                         if (linha[i] != ' '){  
                             aux_tamanho += linha[i];
@@ -37,7 +37,7 @@ int tamanho_matriz(){
     return tamanho;
 }
 
-int quantidade(int** matriz, int tamanho){
+int quantidade(int tamanho){
 
     ifstream arquivoE;
     string linha;
@@ -47,7 +47,7 @@ int quantidade(int** matriz, int tamanho){
     if (arquivoE.is_open()){
         while(getline(arquivoE, linha)){
             if (linha_arq!=0){
-                for(int i=0; i<=linha.size(); i++){
+                for(int i=0; i<=(int)linha.size(); i++){
                     if (linha[i] == ' '){
                         quantidade++;   
                     }
@@ -69,7 +69,7 @@ void ler_andar_matriz(int** matriz, int tamanho){
     string linha, aux_elemento;
     int elemento=0, lin=0, col=0, inicio_matriz=1, fim_matriz=tamanho, j=0, k=0, cont_linha_matriz=0;
     int aux_soma=0, soma_total=0, linha_arq=0, aux_quant=0, aux=0;
-    int quant = quantidade(matriz, tamanho);
+    int quant = quantidade(tamanho);
     
     ifstream arquivoE;
     arquivoE.open("dataset/input.data", ios::in);
@@ -84,7 +84,7 @@ void ler_andar_matriz(int** matriz, int tamanho){
                 }
                 if ((linha_arq>=inicio_matriz) && (linha_arq<=fim_matriz)){
 
-                    for (int i=0; i<=linha.size(); i++){
+                    for (int i=0; i<=(int)linha.size(); i++){
                         if ((linha[i] != '\0') && (linha[i] != '\n')){
                             if (linha[i] != ' '){  
                                 aux_elemento += linha[i];
@@ -155,37 +155,37 @@ int verificar_matriz(int** matriz, int tamanho, int linha, int coluna, int quant
         for (int j=coluna; j<tamanho; j++){
 
             if ((j!=0) && (i!=tamanho-1) && (j!=tamanho-1)){
-                andei = valor_maior_geral(matriz, soma, i, j, tamanho);
+                andei = valor_maior_geral(matriz, i, j);
             }
             else if ((j==0) && (i!=tamanho-1)){
-                andei = valor_maior_cantos(matriz, soma, i, j, tamanho, 10);
+                andei = valor_maior_cantos(matriz, i, j, 10);
             }
             else if ((j==tamanho-1) && (i!=tamanho-1)){
-                andei = valor_maior_cantos(matriz, soma, i, j, tamanho, 01);
+                andei = valor_maior_cantos(matriz, i, j, 01);
             }
             else if ((j!=tamanho-1) && (i==tamanho-1)){
                 andei = 1;
             }
  
             if(andei==1){
-                aux_soma = direita(matriz, i, j, tamanho);
+                aux_soma = direita(matriz, i, j);
                 soma+=aux_soma;
             }else if(andei==2){
-                aux_soma = diagonal_direita(matriz, i, j, tamanho);
+                aux_soma = diagonal_direita(matriz, i, j);
                 i+=1;
                 soma+=aux_soma;
             }else if(andei==3){
-                aux_soma = abaixo(matriz, i, j, tamanho);
+                aux_soma = abaixo(matriz, i, j);
                 i+=1;
                 j-=1;
                 soma+=aux_soma;
             }else if (andei==4){
-                aux_soma = diagonal_esquerda(matriz, i, j, tamanho);
+                aux_soma = diagonal_esquerda(matriz, i, j);
                 i+=1;
                 j-=2;
                 soma+=aux_soma;
             }else if (andei==5){
-                aux_soma = esquerda(matriz, i, j, tamanho);
+                aux_soma = esquerda(matriz, i, j);
                 j-=2;
                 soma+=aux_soma;
             }
@@ -205,7 +205,7 @@ int verificar_matriz(int** matriz, int tamanho, int linha, int coluna, int quant
     return soma;
 }
 
-short int valor_maior_geral(int** matriz, int soma, int i, int j, int tamanho){
+short int valor_maior_geral(int** matriz, int i, int j){
     short int andei=0;
     int di = matriz[i][j+1];
     int es = matriz[i][j-1];
@@ -232,7 +232,7 @@ short int valor_maior_geral(int** matriz, int soma, int i, int j, int tamanho){
     return andei;   
 }
 
-short int valor_maior_cantos(int** matriz, int soma, int i, int j, int tamanho, int aux){
+short int valor_maior_cantos(int** matriz, int i, int j, int aux){
     short int andei=0;
     int di = matriz[i][j+1];
     int es = matriz[i][j-1];
@@ -266,31 +266,31 @@ short int valor_maior_cantos(int** matriz, int soma, int i, int j, int tamanho, 
     return andei; 
 }
 
-int direita(int** matriz, int i, int j, int tamanho){
+int direita(int** matriz, int i, int j){
     int elemento = matriz[i][j+1];
     matriz[i][j+1] = -1;
     return elemento;
 }
 
-int esquerda(int** matriz, int i, int j, int tamanho){
+int esquerda(int** matriz, int i, int j){
     int elemento = matriz[i][j-1];
     matriz[i][j-1] = -1;
     return elemento;
 }
 
-int diagonal_direita(int** matriz, int i, int j, int tamanho){
+int diagonal_direita(int** matriz, int i, int j){
     int elemento = matriz[i+1][j+1];
     matriz[i+1][j+1] = -1;
     return elemento;
 }
 
-int diagonal_esquerda(int** matriz, int i, int j, int tamanho){
+int diagonal_esquerda(int** matriz, int i, int j){
     int elemento = matriz[i+1][j-1];
     matriz[i+1][j-1] = -1;
     return elemento;
 }
 
-int abaixo(int** matriz, int i, int j, int tamanho){
+int abaixo(int** matriz, int i, int j){
     int elemento = matriz[i+1][j];
     matriz[i+1][j] = -1;
     return elemento;
