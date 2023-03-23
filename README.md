@@ -1,5 +1,5 @@
 # O Caminho Guloso
-* Atividade realizada no 3º período para a disciplina de Algoritmos e Estrutura de Dados.
+* Atividade realizada no 3º período para a disciplina de Algoritmos e Estrutura de Dados I.
 * Curso de Engenharia da Computação - CEFET-MG, Campus V. 
 
 ## Instruções para a realização da atividade
@@ -25,11 +25,11 @@ Programa feito na linguagem C++.<br>
 <img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/arquivo_ex.png">
 </p>
 
-- <b>Terminal de comando:</b> Onde é pedido ao usuário para digitar a posição (linha e coluna) pela qual ele quer começar a caminhar na matriz. E onde também é impresso as matrizes em seu formato original, em seu formato com ‘-1’ nas posições onde foi percorrida, e também as somas individuais e total dos valores percorridos.
+- <b>Terminal de comando:</b> Onde é pedido ao usuário para digitar a posição (linha e coluna) pela qual ele quer começar a caminhar na matriz. E onde também é impresso as matrizes em seus formatos originais, em seus formatos com ‘-1’ nas posições onde foram percorridas, e também as somas individuais e total dos valores percorridos.
 
 ## Explicação da lógica utilizada
 Na função "ler_andar_matriz", no matriz.cpp, é aberto o arquivo “input.data” para leitura, e criado um IF para toda vez que encontrar uma linha da matriz (linha 85). Dentro do IF, é realizado manobras para que uma variável auxiliar tipo string receba somente os elementos dessa matriz, sem os espaços ou “\0” (linha 90). Quando recebido um elemento, ele é transformado para inteiro e adicionado na matriz do programa, que foi passada como parâmetro para a função, e então, a variável é zerada para receber o próximo elemento, até que a matriz seja completamente preenchida (linhas 93 e 106).<br>
-<br>Para o caminhamento, será utilizado essa matriz para mostrar as decisões tomadas:
+<br>Para o caminhamento, será utilizado essa matriz 4x4 para mostrar as decisões tomadas:
 
 <p align="center">
 <img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/matriz_ex.PNG">
@@ -41,7 +41,7 @@ Na função "ler_andar_matriz", no matriz.cpp, é aberto o arquivo “input.data
 
 Na função verificar_matriz, foi criado um IF e três ELSE IF’s (condições), que serão analisados enquanto a matriz estiver sendo caminhada:<br>
 
-<b>1º-</b> Irá verificar se a posição atual da matriz é a primeira ou última coluna, ou última linha, pois nesse caso será possível caminhar para todos os lados, se algum deles já não tiver sido descoberto (linha 157):
+<b>1º-</b> Irá verificar se a posição atual da matriz não é a primeira ou última coluna, ou última linha, pois nesse caso será possível caminhar para todos os lados, se algum deles já não tiver sido descoberto (linha 157):
 <p align="center">
 <img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/matriz_ex4.png">
 </p>
