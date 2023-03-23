@@ -27,7 +27,8 @@ Programa feito na linguagem C++.<br>
 
 - <b>Terminal de comando:</b> Onde é pedido ao usuário para digitar a posição (linha e coluna) pela qual ele quer começar a caminhar na matriz. E onde também é impresso as matrizes em seus formatos originais, em seus formatos com ‘-1’ nas posições onde foram percorridas, e também as somas individuais e total dos valores percorridos.
 
-- O programa foi testado no Windows 10 (utilizando o MinGW) e no Linux.
+- Criação do programa: utilizado um notebook Lenovo com sistema operacional Windows 10 (terminal de comando com o software MinGW).
+- Testes do programa: executado no mesmo notebook de criação, e em outros dois computadores diferentes com sistema operacional Linux.
 
 ## Explicação da lógica utilizada
 Na função "ler_andar_matriz", no matriz.cpp, é aberto o arquivo “input.data” para leitura, e criado um IF para toda vez que encontrar uma linha da matriz (linha 85). Dentro do IF, é realizado manobras para que uma variável auxiliar tipo string receba somente os elementos dessa matriz, sem os espaços ou “\0” (linha 90). Quando recebido um elemento, ele é transformado para inteiro e adicionado na matriz do programa, que foi passada como parâmetro para a função, e então, a variável é zerada para receber o próximo elemento, até que a matriz seja completamente preenchida (linhas 93 e 106).<br>
