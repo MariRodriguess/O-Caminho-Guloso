@@ -16,7 +16,7 @@ O Algoritmo é baseado no conceito de caminhamento em matrizes de forma gulosa. 
 ## Resolução do Problema
 Programa feito na linguagem C++.<br>
 - O programa do caminho guloso é constituído por quatro arquivos: matriz.cpp, matriz.hpp, main.cpp, input.data.<br>
-- <b>main.cpp:</b> É criado um ponteiro para uma matriz e outro para uma variável inteira, chamada de tamanho. Essa variável irá receber uma função que retorna o tamanho da matriz que está dentro do arquivo, nesse caso, o “input.data”. Em seguida, será realizada uma alocação dinâmica para a matriz, utilizando o tamanho retornado. Esses dois elementos serão passados como parâmetros para as funções e utilizados durante todo o código. Ainda na main, será chamada a função “ler_andar_matriz”, que será responsável por realizar todas as instruções do código.<br>
+- <b>main.cpp:</b> É criado um ponteiro para uma matriz de inteiros e outro para uma variável inteira, chamada de tamanho. Essa variável irá receber uma função que retorna o tamanho da matriz que está dentro do arquivo, nesse caso, o “input.data”. Em seguida, será realizada uma alocação dinâmica para a matriz, utilizando o tamanho retornado. Esses dois elementos serão passados como parâmetros para as funções e utilizados durante todo o código. Ainda na main, será chamada a função “ler_andar_matriz”, que será responsável por realizar todas as instruções do código.<br>
 - <b>matriz.hpp:</b> É definida todas as bibliotecas e funções utilizadas no código.<br>
 - <b>matriz.cpp:</b> É realizado o desenvolvimento e a chamada de cada função.<br>
 - <b>input.data:</b> Arquivo contendo o tamanho das matrizes (na primeira linha) e as próprias matrizes nas linhas seguintes. É importante salientar que a matriz é composta apenas por números inteiros positivos e o seu tamanho é quadrado, ou seja, tem o mesmo número de linhas e colunas. Abaixo um modelo de um arquivo com 4 matrizes 4x4:
@@ -28,7 +28,7 @@ Programa feito na linguagem C++.<br>
 - <b>Terminal de comando:</b> Onde é pedido ao usuário para digitar a posição (linha e coluna) pela qual ele quer começar a caminhar na matriz. E onde também é impresso as matrizes em seu formato original, em seu formato com ‘-1’ nas posições onde foi percorrida, e também as somas individuais e total dos valores percorridos.
 
 ## Explicação da lógica utilizada
-É aberto o arquivo “input.data” para leitura, e criado um IF para toda vez que encontrar uma linha da matriz. Dentro do IF, é realizado manobras para que uma variável auxiliar tipo string receba somente os elementos dessa matriz, sem os espaços ou “\0”. Quando recebido um elemento, ele é transformado para inteiro e adicionado na matriz do programa, que foi passada como parâmetro para a função, e então, a variável é zerada para receber o próximo elemento, até que a matriz seja completamente preenchida.<br>
+Na função "ler_andar_matriz", no matriz.cpp, é aberto o arquivo “input.data” para leitura, e criado um IF para toda vez que encontrar uma linha da matriz (linha 85). Dentro do IF, é realizado manobras para que uma variável auxiliar tipo string receba somente os elementos dessa matriz, sem os espaços ou “\0” (linha 90). Quando recebido um elemento, ele é transformado para inteiro e adicionado na matriz do programa, que foi passada como parâmetro para a função, e então, a variável é zerada para receber o próximo elemento, até que a matriz seja completamente preenchida (linhas 93 e 106).<br>
 <br>Para o caminhamento, será utilizado essa matriz para mostrar as decisões tomadas:
 
 <p align="center">
@@ -39,26 +39,26 @@ Programa feito na linguagem C++.<br>
 <i>Azul claro:</i> todas as posições da matriz que entrariam na condição apresentada.<br>
 <i>Azul escuro:</i> posição selecionada aleatoriamente, dentro das que cumprem a condição, para exemplificação de possíveis caminhos, utilizando as setas.<br><br>
 
-Foi criado um IF e três ELSE IF’s (condições):<br>
+Na função verificar_matriz, foi criado um IF e três ELSE IF’s (condições), que serão analisados enquanto a matriz estiver sendo caminhada:<br>
 
-<b>1º-</b> Irá verificar se a posição atual da matriz é a última linha e não é a última coluna, se sim, apenas será possível caminhar para a direita:
+<b>1º-</b> Irá verificar se a posição atual da matriz é a primeira ou última coluna, ou última linha, pois nesse caso será possível caminhar para todos os lados, se algum deles já não tiver sido descoberto (linha 157):
 <p align="center">
-<img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/matriz_ex1.png">
+<img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/matriz_ex4.png">
 </p>
 
-<br> <b>2º-</b> Irá verificar se está na primeira coluna e não está na última linha, pois nesse caso, será possível andar apenas para direita, diagonal direita e baixo:
+<br> <b>2º-</b> Irá verificar se está na primeira coluna e não está na última linha, pois nesse caso será possível andar apenas para direita, diagonal direita e baixo (linha 160):
 <p align="center">
 <img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/matriz_ex2.png">
 </p>
 
-<br> <b>3º-</b> Irá verificar se está na última coluna e não está na última linha, pois nesse caso, será possível andar apenas para esquerda, diagonal esquerda e baixo:
+<br> <b>3º-</b> Irá verificar se está na última coluna e não está na última linha, pois nesse caso será possível andar apenas para esquerda, diagonal esquerda e baixo (linha 163):
 <p align="center">
 <img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/matriz_ex3.png">
 </p>
 
-<br> <b>4º-</b> Irá verificar se não está na primeira ou última coluna, ou na última linha da matriz, pois nesse caso será possível caminhar para todos os lados, se algum deles já não tiver sido descoberto:
+<br> <b>4º-</b> Irá verificar se está na última linha e não está na última coluna, pois nesse caso apenas será possível caminhar para a direita (linha 166):
 <p align="center">
-<img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/matriz_ex4.png">
+<img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/matriz_ex1.png">
 </p>
 
 Cada um dos If / Else if irá chamar uma função que verifique qual o maior valor dentro dos caminhos possíveis, e se ele já não foi processado, quando o encontrar, a matriz será direcionada para esse caminho e continuará assim até chegar no fim.<br>
@@ -66,13 +66,13 @@ Cada um dos If / Else if irá chamar uma função que verifique qual o maior val
 Para cada direção (direita, esquerda, abaixo, diagonal direita, diagonal esquerda) há uma função separada, que irá retornar o valor dessa posição, para realizar a soma, e que também irá substituir o elemento dessa posição por ‘-1’, com o objetivo de que a posição se dê como caminhada.<br>
 
 Em casos de valores iguais, foi adotado uma forma para que a matriz sempre seja direcionada para os lugares mais distantes do final. A prioridade ficou nessa ordem: esquerda, direita, diagonal esquerda, abaixo, diagonal direita. <br>
-O exemplo abaixo, com o número ‘58’, mostra esse método na prática. Com a localização atual no [2,3] a opção de caminhar poderia ser para direita [2,4] ou para baixo [3,3], pois é onde tem o maior valor dentre todas as opções possíveis. Seguindo a prioridade, ele foi primeiro para direita, analisou todas as posições novamente, e o ‘58’ era de novo o maior dos valores, então se moveu para baixo. Dessa forma, foi possível pegar os dois ‘58’ e acrescentá-lo à soma, caso contrário, se fosse para baixo primeiro, teria deixado de pegar o valor da direita, e afetado a soma total, cujo objetivo é ser o maior valor possível:<br>
+O exemplo abaixo, com o número ‘58’, mostra esse método na prática. Com a localização atual no [2,3] a opção de caminhar poderia ser para direita [2,4] ou para baixo [3,3], pois é onde tem o maior valor dentre todas as opções possíveis. Seguindo a prioridade, ele foi primeiro para direita, analisou todas as posições novamente, e o ‘58’ era de novo o maior dos valores, então se moveu para baixo. Dessa forma, foi possível pegar os dois ‘58’ e acrescentá-los à soma, caso contrário, se fosse para baixo primeiro, teria deixado de pegar o valor da direita e afetado a soma total, cujo objetivo é ser o maior valor possível:<br>
 <p align="center">
 <img src="https://github.com/MariRodriguess/O-Caminho-Guloso/blob/aa046bc459b47a820e2bc43dfe601470e53778e2/imgs/repeticao_ex.png">
 </p>
 
-Quando chegar ao fim de uma matriz, o arquivo irá fazer a leitura da próxima e chamar todas as mesmas funções.
-Assim sendo, o programa irá fazer a leitura de cada uma das matrizes contidas no arquivo, e caminhar por elas utilizando a forma gulosa, que escolhe sempre o maior valor para percorrer e não volta para caminhos já percorridos.
+Quando chegar ao fim de uma matriz, será printado o resultado do caminho e a sua soma, para então fazer a leitura da próxima e chamar todas as mesmas funções.
+Assim sendo, o programa irá fazer a leitura de cada uma das matrizes contidas no arquivo, e caminhar por todas elas utilizando a forma gulosa.
 
 ## Exemplo de execução:
 <p align="center">
